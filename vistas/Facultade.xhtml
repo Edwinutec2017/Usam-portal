@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" http-equiv="X-UA-Conpatible" />
+        <h:outputStylesheet library="css" name="/bootstrap.min.css"/>
+        <h:outputStylesheet library="css" name="/estilo.css"/>
+        <title>Usuarios</title>
+
+    </h:head>
+    <h:body id="principal" styleClass="imagenFondo" >
+        <img src="../resources/img/fondo1.png" alt=""/>
+        <div class="col-lg-12" id="banner" >
+            <center><label style="color: #ffffff"><h1>REGISTROS DE FACULTADES</h1></label></center>
+        </div>
+        <div class="container" style="padding-top: 100px"> 
+            <div class="row">                     
+                <div class="col-xs-12" id="registro">
+                    <h4>Formulario de registro facultades</h4>                  
+                    <h:form id="form">
+                        <p:growl id="ms" showDetail="true"/>
+
+                        <p:panel id="panel" style="border-color: #ffffff">   
+
+                            <div class="col-lg-4">
+                                <br>
+                                    <p:outputLabel value="EJEMPLO"/></br>
+                                <p:outputLabel value="Codigo Facultad: FCC"/>
+                                <p:outputLabel value="Nombre: CIENCIAS DE LA COMPUTACION"/>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <h:outputLabel value="Codigo Facultad" class="control-label"/>
+                                <p:inputMask id="codigo" value="#{beanFacultad.idFacultad}" styleClass="form-control" mask="" required="true" requiredMessage="Codigo Requerido" placeholder="Codigo Facultad"/>
+                                <h:outputLabel value="Nombre" class="control-label"/>
+                                <p:inputMask id="nombre" value="#{beanFacultad.nombreFacultad}" styleClass="form-control" mask="" required="true" requiredMessage="Nombre Requerido" placeholder="Nombre Facultad"/>
+                                <p:separator/>
+
+                            </div>
+
+                            <div class="col-lg-4">                      
+                            </div>
+                            <div class="col-lg-6">
+                                <p:commandButton value="Guardar"  update=":tabla,panel" class="btn-block" style="color: #ffffff;background-color: #000" actionListener="#{beanFacultad.insertarFacultad()}" />
+                            </div>
+                            <div class="col-lg-6">
+                                <p:commandButton value="Limpiar"  update="panel" class="btn-block" style="background: #ffffff;color: #0000ff" actionListener="#{beanFacultad.limpiar()}" />
+                            </div>
+
+                        </p:panel>
+
+                    </h:form>
+
+                </div>
+
+                <p:separator/>
+                <div  id="datos"> 
+                    <center><h3>Tabla de Datos</h3></center> 
+                    <p:dataTable var="fac"  value="#{beanFacultad.listFacultad}" id="tabla" class="table table-striped" style="text-align: center">
+                        <p:column headerText="Codigo">
+                            <h:outputText value="#{fac.idFacultad}" />   
+                        </p:column>                   
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{fac.nombreFaculta}" />   
+                        </p:column>                   
+
+                    </p:dataTable>
+
+                </div>
+
+            </div>
+        </div>
+    </h:body>
+</html>
+
